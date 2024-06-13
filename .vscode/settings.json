@@ -51,5 +51,5 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "The Great River Escape.sln"
+    "dotnet.defaultSolution": "THRIDI-TheGreatRiverEscape.sln"
 }
