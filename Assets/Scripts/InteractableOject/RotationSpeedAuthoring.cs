@@ -1,15 +1,22 @@
 ﻿namespace InteractableOject
 {
     using Unity.Entities;
-    public struct RotationSpeed : IComponentData
+    using UnityEngine;
+
+    public class RotationSpeedAuthoring : MonoBehaviour
     {
-        public float Value;
-    }
-    
-    public struct FloatingData : IComponentData
-    {
-        public float Amplitude;
-        public float Frequency;
-        public float InitialY;
+        public float rotationSpeed;
+
+        private class RotationSpeedBaker : Baker<RotationSpeedAuthoring>
+        {
+            public override void Bake(RotationSpeedAuthoring authoring)
+            {
+                Entity e = GetEntity(TransformUsageFlags.Dynamic);
+                AddComponent(e, new RotationSpeed
+                {
+                    Value = authoring.rotationSpeed
+                });
+            }
+        }
     }
 }

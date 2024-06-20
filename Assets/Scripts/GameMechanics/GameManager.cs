@@ -26,7 +26,7 @@ public class GameManager : MonoBehaviour
     
 
     [Header("Player")]
-    [SerializeField] private GameObject player;
+    [SerializeField] public GameObject player;
     [SerializeField] private Collider playerCollider;
     [SerializeField] private PlayerStats playerStats;
     [SerializeField] private PlayerUI playerUI;
@@ -60,23 +60,27 @@ public class GameManager : MonoBehaviour
     {
         playerStats.IncreaseToxicity(value);
         playerUI.IncreaseToxicity(playerStats.Toxicity);
+        Debug.Log("Toxicity Increased: " + playerStats.Toxicity);
     }
     
     public void IncreaseHunger(float value)
     {
         playerStats.IncreaseHunger(value);
         playerUI.IncreaseHunger(playerStats.Hunger);
+        Debug.Log("Hunger Increased: " + playerStats.Hunger);
     }
     
     public void DecreaseToxicity(float value)
     {
         playerStats.DecreaseToxicity(value);
         playerUI.DecreaseToxicity(playerStats.Toxicity);
+        Debug.Log("Toxicity Decreased: " + playerStats.Toxicity);
     }
     
     public void DecreaseHunger(float value)
     {
         playerStats.DecreaseHunger(value);
         playerUI.DecreaseHunger(playerStats.Hunger);
+        Debug.Log("Hunger Decreased: " + playerStats.Hunger);
     }
 }

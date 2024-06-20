@@ -220,7 +220,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -688.5, y: 395.4}
+  m_AnchoredPosition: {x: -169.5, y: 56.399994}
   m_SizeDelta: {x: 160, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &4207358094154841764
@@ -327,7 +327,6 @@ MonoBehaviour:
   _toxicitySlider: {fileID: 0}
   _hungerSlider: {fileID: 0}
   _updateSpeed: 0.5
-  decreaseRate: 1
 --- !u!1 &8817553067657480964
 GameObject:
   m_ObjectHideFlags: 0
@@ -362,7 +361,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -688, y: 468}
+  m_AnchoredPosition: {x: -169, y: 129}
   m_SizeDelta: {x: 160, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2193204986398971378

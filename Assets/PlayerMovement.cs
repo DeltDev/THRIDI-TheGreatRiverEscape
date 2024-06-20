@@ -42,7 +42,7 @@ public class PlayerMovement : MonoBehaviour
             Quaternion targetRotation = Quaternion.Euler(90f + cameraPitch, smoothAngle1, 0f);
             rb.MoveRotation(targetRotation);
             Vector3 movementDirection = Quaternion.Euler(cameraPitch,rotationAngle1,0f) * Vector3.forward;
-            Debug.Log(movementDirection);
+            // Debug.Log(movementDirection);
             rb.AddForce(swimSpeed * Time.deltaTime * movementDirection);
         } else {
             rb.velocity = Vector3.zero;
