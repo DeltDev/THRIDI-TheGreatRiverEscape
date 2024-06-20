@@ -1,5 +1,4 @@
 using System;
-using InteractableOject;
 using UnityEngine;
 
 [Serializable]
@@ -55,20 +54,6 @@ public class GameManager : MonoBehaviour
     private void Update()
     {
         DecreaseHunger(decreaseRate * Time.deltaTime);
-        PlayerUpdate();
-    }
-
-    private void PlayerUpdate()
-    {
-        Collider[] colliders = Physics.OverlapBox(playerCollider.bounds.center, playerCollider.bounds.extents, player.transform.rotation, LayerMask.GetMask("Interactable"));
-        foreach (var c in colliders)
-        {
-            BaseObject obj = c.GetComponent<BaseObject>();
-            if (obj != null && obj.CanInteract())
-            {
-                obj.OnInteract();
-            }
-        }
     }
     
     public void IncreaseToxicity(float value)
