@@ -5,7 +5,6 @@ namespace InteractableOject
 {
     public class ObjectSpawnerAuthoring : MonoBehaviour
     {
-
         public GameObject prefab;
 
         private class ObjectSpawnerBaker : Baker<ObjectSpawnerAuthoring>

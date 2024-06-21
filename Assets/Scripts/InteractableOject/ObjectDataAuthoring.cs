@@ -15,7 +15,6 @@ namespace InteractableOject
                 Entity e = GetEntity(TransformUsageFlags.None);
                 AddComponent(e, new ObjectData
                 {
-                    ObjectName = authoring.scriptObject.objectName,
                     Hunger = authoring.scriptObject.hunger,
                     Toxicity = authoring.scriptObject.toxicity,
                 });

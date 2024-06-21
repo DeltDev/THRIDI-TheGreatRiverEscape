@@ -170,6 +170,8 @@ namespace InteractableOject
                 Frequency = CONST.FREQUENCY,
                 InitialY = position.y
             });
+            
+            
         }
     }
 }

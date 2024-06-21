@@ -7,7 +7,6 @@ namespace InteractableOject
 
     public struct ObjectData : IComponentData
     {
-        public FixedString64Bytes ObjectName;
         public float Hunger;
         public float Toxicity;
     }

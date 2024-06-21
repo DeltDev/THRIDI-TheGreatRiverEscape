@@ -7,8 +7,7 @@ namespace InteractableOject
     [CreateAssetMenu(fileName = "New Script Object", menuName = "Script Object")]
     public class ScriptObject : ScriptableObject
     {
-        [Header("Object Name")]
-        public string objectName;
+        [Header("Object Stats")]
         public float hunger;
         public float toxicity;
     }
