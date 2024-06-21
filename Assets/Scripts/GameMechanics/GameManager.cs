@@ -62,27 +62,24 @@ public class GameManager : MonoBehaviour
     {
         playerStats.IncreaseToxicity(value);
         playerUI.IncreaseToxicity(playerStats.Toxicity);
-        Debug.Log("Toxicity Increased: " + playerStats.Toxicity);
     }
     
     public void IncreaseHunger(float value)
     {
         playerStats.IncreaseHunger(value);
         playerUI.IncreaseHunger(playerStats.Hunger);
-        Debug.Log("Hunger Increased: " + playerStats.Hunger);
+        Debug.Log("Nyam");
     }
     
     public void DecreaseToxicity(float value)
     {
         playerStats.DecreaseToxicity(value);
         playerUI.DecreaseToxicity(playerStats.Toxicity);
-        Debug.Log("Toxicity Decreased: " + playerStats.Toxicity);
     }
     
     public void DecreaseHunger(float value)
     {
         playerStats.DecreaseHunger(value);
         playerUI.DecreaseHunger(playerStats.Hunger);
-        Debug.Log("Hunger Decreased: " + playerStats.Hunger);
     }
 }

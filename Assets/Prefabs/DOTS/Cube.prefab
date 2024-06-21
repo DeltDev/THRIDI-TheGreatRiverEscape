@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 7744125075319247808}
   - component: {fileID: 6165909708634606513}
   - component: {fileID: 170877168392357689}
-  - component: {fileID: 4807700635894392932}
   - component: {fileID: 1589335824497808234}
   - component: {fileID: 6540819783860697144}
+  - component: {fileID: 3013693400884304473}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -122,20 +122,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotationSpeed: 2
---- !u!114 &4807700635894392932
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1334521016570951557}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5277b149bec7427f819cb9e0ef03feaa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  amplitude: 1
-  frequency: 0.5
 --- !u!114 &1589335824497808234
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -162,3 +148,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scriptObject: {fileID: 11400000, guid: 08c170fca8997dd4a8575842cd1f8c8d, type: 2}
+--- !u!114 &3013693400884304473
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1334521016570951557}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5277b149bec7427f819cb9e0ef03feaa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  amplitude: 1
+  frequency: 0.5

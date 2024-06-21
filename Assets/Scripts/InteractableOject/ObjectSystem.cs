@@ -61,7 +61,6 @@ namespace InteractableOject
             public void Execute(ref LocalTransform localTransform, ref FloatingData floatingData)
             {
                 float sin = math.sin(2 * math.PI * time * floatingData.Frequency);
-                Debug.Log(sin);
                 float newY = floatingData.InitialY + sin * floatingData.Amplitude;
                 localTransform.Position.y = newY;
             }
@@ -127,4 +126,48 @@ namespace InteractableOject
     }
     
     public struct MarkedForDestruction : IComponentData { }
+
+
+    [BurstCompile]
+    public partial class ObjectSpawnerSystem : SystemBase
+    {
+        
+        public Camera camera;
+        protected override void OnCreate()
+        {
+            RequireForUpdate<ObjectSpawnerData>();
+            camera = Camera.main;
+        }
+
+        [BurstCompile]
+        protected override void OnUpdate()
+        {
+            if (!Input.GetKeyDown(KeyCode.Space))
+            {
+                return;
+            }
+
+            ObjectSpawnerData spawnerData = SystemAPI.GetSingleton<ObjectSpawnerData>();
+            Entity spawnedEntity = EntityManager.Instantiate(spawnerData.prefab);
+
+            Vector3 cameraDirection = camera.transform.forward;
+            float angle = UnityEngine.Random.Range(-15f, 15f);
+            Vector3 newDirection = Quaternion.Euler(angle, angle, 0) * cameraDirection;
+            Vector3 position = camera.transform.position + newDirection * UnityEngine.Random.Range(20f, 40f);
+
+            SystemAPI.SetComponent(spawnedEntity, new LocalTransform
+            {
+                Position = position,
+                Rotation = UnityEngine.Random.rotation,
+                Scale = 3f
+            });
+            
+            SystemAPI.SetComponent(spawnedEntity, new FloatingData
+            {
+                Amplitude = 1f,
+                Frequency = 0.5f,
+                InitialY = position.y
+            });
+        }
+    }
 }
