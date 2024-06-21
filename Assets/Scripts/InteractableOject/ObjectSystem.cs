@@ -49,7 +49,7 @@ namespace InteractableOject
         {
             FloatingSystemJob job = new FloatingSystemJob
             {
-                DeltaTime = SystemAPI.Time.DeltaTime
+                time = (float) SystemAPI.Time.ElapsedTime
             };
             job.ScheduleParallel();
         }
@@ -57,13 +57,13 @@ namespace InteractableOject
         [BurstCompile]
         public partial struct FloatingSystemJob : IJobEntity
         {
-            public float DeltaTime;
-        
+            public float time;
             public void Execute(ref LocalTransform localTransform, ref FloatingData floatingData)
             {
-                float3 position = localTransform.Position;
-                position.y = floatingData.InitialY + math.sin(DeltaTime * floatingData.Frequency) * floatingData.Amplitude;
-                localTransform.Position = position;
+                float sin = math.sin(2 * math.PI * time * floatingData.Frequency);
+                Debug.Log(sin);
+                float newY = floatingData.InitialY + sin * floatingData.Amplitude;
+                localTransform.Position.y = newY;
             }
         }
     }

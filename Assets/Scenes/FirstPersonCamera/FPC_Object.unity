@@ -252,8 +252,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5277b149bec7427f819cb9e0ef03feaa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  amplitude: 0.5
-  frequency: 2
+  amplitude: 3
+  frequency: 1
 --- !u!33 &5280990450644859333
 MeshFilter:
   m_ObjectHideFlags: 0
