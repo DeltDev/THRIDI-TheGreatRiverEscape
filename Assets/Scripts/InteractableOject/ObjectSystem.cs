@@ -60,7 +60,7 @@ namespace InteractableOject
             public float time;
             public void Execute(ref LocalTransform localTransform, ref FloatingData floatingData)
             {
-                float sin = math.sin(2 * math.PI * time * floatingData.Frequency);
+                float sin = math.sin((2 * math.PI * time * floatingData.Frequency) % (2 * math.PI));
                 float newY = floatingData.InitialY + sin * floatingData.Amplitude;
                 localTransform.Position.y = newY;
             }
