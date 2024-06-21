@@ -8,11 +8,8 @@ namespace InteractableOject
     public struct ObjectData : IComponentData
     {
         public FixedString64Bytes ObjectName;
-        public FixedString64Bytes ObjectType;
         public float Hunger;
         public float Toxicity;
-        public bool IsIncreasingHunger;
-        public bool IsInstantKill;
     }
 
     public struct RotationSpeed : IComponentData

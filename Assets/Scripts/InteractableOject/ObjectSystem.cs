@@ -109,6 +109,7 @@ namespace InteractableOject
             gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         }
         
+        [BurstCompile]
         protected override void OnUpdate()
         {
             var commandBuffer = new EntityCommandBuffer(Allocator.TempJob);
@@ -151,8 +152,9 @@ namespace InteractableOject
             Entity spawnedEntity = EntityManager.Instantiate(spawnerData.prefab);
 
             Vector3 cameraDirection = camera.transform.forward;
-            float angle = UnityEngine.Random.Range(-15f, 15f);
-            Vector3 newDirection = Quaternion.Euler(angle, angle, 0) * cameraDirection;
+            float anglex = UnityEngine.Random.Range(-15f, 15f);
+            float angley = UnityEngine.Random.Range(-15f, 15f);
+            Vector3 newDirection = Quaternion.Euler(anglex, angley, 0) * cameraDirection;
             Vector3 position = camera.transform.position + newDirection * UnityEngine.Random.Range(20f, 40f);
 
             SystemAPI.SetComponent(spawnedEntity, new LocalTransform
@@ -164,8 +166,8 @@ namespace InteractableOject
             
             SystemAPI.SetComponent(spawnedEntity, new FloatingData
             {
-                Amplitude = 1f,
-                Frequency = 0.5f,
+                Amplitude = CONST.AMPLITUDE,
+                Frequency = CONST.FREQUENCY,
                 InitialY = position.y
             });
         }
