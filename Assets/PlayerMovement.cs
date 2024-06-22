@@ -39,7 +39,7 @@ public class PlayerMovement : MonoBehaviour
                 cameraPitch -= 360;
             } 
             cameraPitch = Mathf.Clamp(cameraPitch, -60f, 60f);
-            Quaternion targetRotation = Quaternion.Euler(90f + cameraPitch, smoothAngle1, 0f);
+            Quaternion targetRotation = Quaternion.Euler(cameraPitch, smoothAngle1, 0f);
             rb.MoveRotation(targetRotation);
             Vector3 movementDirection = Quaternion.Euler(cameraPitch,rotationAngle1,0f) * Vector3.forward;
             // Debug.Log(movementDirection);
