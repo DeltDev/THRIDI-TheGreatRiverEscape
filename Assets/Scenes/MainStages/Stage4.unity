@@ -1053,6 +1053,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2311675089148782840, guid: 891921248ec2fe54ca3a8aeace9ea983,
         type: 3}
+      propertyPath: swimSpeed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2311675089148782840, guid: 891921248ec2fe54ca3a8aeace9ea983,
+        type: 3}
       propertyPath: inputManager
       value: 
       objectReference: {fileID: 1313309878}
