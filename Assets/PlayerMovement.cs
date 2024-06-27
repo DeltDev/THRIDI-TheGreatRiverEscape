@@ -10,8 +10,10 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float rotationSmoothTime = 0.1f;
     [SerializeField] private Transform cameraTransform;
     private Vector3 movementDirection;
+    [SerializeField] private float dashForce;
     private float rotationSmoothVelocity;
     private Rigidbody rb;
+    
     private void Awake() {
         rb = GetComponent<Rigidbody>();
         HideAndLockCursor();
@@ -23,10 +25,12 @@ public class PlayerMovement : MonoBehaviour
     }
     private void Start() {
         inputManager.OnMoveInput += Move;
+        inputManager.OnDashInput += Dash;
     }
 
     private void OnDestroy() {
         inputManager.OnMoveInput -= Move;
+        inputManager.OnDashInput -= Dash;
     }
 
     private void Move(Vector2 axisDirection){
@@ -41,5 +45,9 @@ public class PlayerMovement : MonoBehaviour
         } else {
             rb.velocity = Vector3.zero;
         }
+    }
+    
+    private void Dash(){
+        rb.AddForce(dashForce * cameraTransform.forward);
     }
 }

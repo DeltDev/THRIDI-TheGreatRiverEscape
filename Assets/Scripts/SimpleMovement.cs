@@ -10,7 +10,7 @@ public class SimpleMovement : MonoBehaviour
     [SerializeField] private float floatingSpeed = 5;
 
     [SerializeField] private float SprintBooster = 2;
-    private Transform camera;
+    private Transform _camera;
 
     [SerializeField] private Vector2 rotationSpeed = new Vector2(20,20);
     [SerializeField] private float maxSpeed = 10; 
@@ -20,7 +20,7 @@ public class SimpleMovement : MonoBehaviour
 
     void Start()
     {
-        camera = GetComponentInChildren<Camera>().gameObject.transform;
+        _camera = GetComponentInChildren<Camera>().gameObject.transform;
     }
 
     // Update is called once per frame
@@ -50,7 +50,7 @@ public class SimpleMovement : MonoBehaviour
 
         rotX = Mathf.Clamp(rotX, -90f, 90f); //Player binder
 
-        camera.rotation = Quaternion.Euler(rotX, rotY, 0); // Camera
+        _camera.rotation = Quaternion.Euler(rotX, rotY, 0); // Camera
         transform.rotation = Quaternion.Euler(0, rotY, 0); // Player
 
         
@@ -65,11 +65,11 @@ public class SimpleMovement : MonoBehaviour
         }
 
         // Move the player in local space for X and Z directions
-        Vector3 horizontalMove = transform.right * z + transform.forward * x * speedBoost;
-        horizontalMove = Vector3.ClampMagnitude(horizontalMove, maxSpeed) * speed * Time.deltaTime;
+        Vector3 horizontalMove = transform.right * z + transform.forward * (x * speedBoost);
+        horizontalMove = Vector3.ClampMagnitude(horizontalMove, maxSpeed) * (speed * Time.deltaTime);
 
         // Move the player in world space for Y direction
-        Vector3 verticalMove = Vector3.up * y * Time.deltaTime;
+        Vector3 verticalMove = Vector3.up * (y * Time.deltaTime);
 
         // Combine horizontal and vertical movements
         Vector3 move = horizontalMove + verticalMove;

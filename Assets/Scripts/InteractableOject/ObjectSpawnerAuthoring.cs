@@ -5,7 +5,13 @@ namespace InteractableOject
 {
     public class ObjectSpawnerAuthoring : MonoBehaviour
     {
-        public GameObject prefab;
+        public GameObject pelet;
+        public GameObject sampah1;
+        public GameObject sampah2;
+        public GameObject sampah3;
+        
+        public float spawnRate;
+        public int maxSpawn;
 
         private class ObjectSpawnerBaker : Baker<ObjectSpawnerAuthoring>
         {
@@ -14,7 +20,13 @@ namespace InteractableOject
                 Entity e = GetEntity(TransformUsageFlags.None);
                 AddComponent(e, new ObjectSpawnerData
                 {
-                    prefab = GetEntity(authoring.prefab, TransformUsageFlags.Dynamic)
+                    pelet = GetEntity(authoring.pelet, TransformUsageFlags.Dynamic),
+                    sampah1 = GetEntity(authoring.sampah1, TransformUsageFlags.Dynamic),
+                    sampah2 = GetEntity(authoring.sampah2, TransformUsageFlags.Dynamic),
+                    sampah3 = GetEntity(authoring.sampah3, TransformUsageFlags.Dynamic),
+                    Timer = authoring.spawnRate,
+                    SpawnRate = authoring.spawnRate,
+                    MaxSpawn = authoring.maxSpawn
                 });
             }
         }
@@ -23,6 +35,13 @@ namespace InteractableOject
     
     public struct ObjectSpawnerData : IComponentData
     {
-        public Entity prefab;
+        public Entity pelet;
+        public Entity sampah1;
+        public Entity sampah2;
+        public Entity sampah3;
+        
+        public float Timer;
+        public float SpawnRate;
+        public int MaxSpawn;
     }
 }

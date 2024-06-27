@@ -4,28 +4,8 @@ using UnityEngine;
 [Serializable]
 public class GameManager : MonoBehaviour
 {
+    public static GameManager Instance { get; private set; }
 
-    
-    private static GameManager instance;
-
-    public static GameManager Instance
-    {
-        get
-        {
-            if (instance == null)
-            {
-                instance = FindObjectOfType<GameManager>();
-                if (instance == null)
-                {
-                    GameObject go = new GameObject();
-                    go.name = "GameManager";
-                    instance = go.AddComponent<GameManager>();
-                }
-            }
-            return instance;
-        }
-    }
-    
 
     [Header("Player")]
     [SerializeField] public GameObject player;
@@ -35,16 +15,17 @@ public class GameManager : MonoBehaviour
 
     [Header("Settings")] 
     [SerializeField] private float decreaseRate = 1f;
+    public GameObject boundingBox; 
 
     
     private void Awake()
     {
-        if (instance == null)
+        if (Instance == null)
         {
-            instance = this;
+            Instance = this;
             DontDestroyOnLoad(gameObject);
         }
-        else if (instance != this)
+        else if (Instance != this)
         {
             Destroy(gameObject);
         }
@@ -52,12 +33,13 @@ public class GameManager : MonoBehaviour
         playerStats = new PlayerStats();
     }
     
-    
     private void Update()
     {
         DecreaseHunger(decreaseRate * Time.deltaTime);
     }
     
+    
+    // ------------------- Player Stats ------------------- //
     public void IncreaseToxicity(float value)
     {
         playerStats.IncreaseToxicity(value);
@@ -82,4 +64,42 @@ public class GameManager : MonoBehaviour
         playerStats.DecreaseHunger(value);
         playerUI.DecreaseHunger(playerStats.Hunger);
     }
+    
+    // ------------------- Player Power ups ------------------- //
+    
+    [Header("Power Ups")]
+    [SerializeField] private bool isDashObtained;
+    [SerializeField] private bool isImmuneBleachObtained;
+    [SerializeField] private bool isNightVisionObtained;
+    
+    public void ObtainDash()
+    {
+        isDashObtained = true;
+    }
+    
+    public bool IsDashObtained()
+    {
+        return isDashObtained;
+    }
+    
+    public void ObtainImmuneBleach()
+    {
+        isImmuneBleachObtained = true;
+    }
+    
+    public bool IsImmuneBleachObtained()
+    {
+        return isImmuneBleachObtained;
+    }
+    
+    public void ObtainNightVision()
+    {
+        isNightVisionObtained = true;
+    }
+    
+    public bool IsNightVisionObtained()
+    {
+        return isNightVisionObtained;
+    }
+    
 }
