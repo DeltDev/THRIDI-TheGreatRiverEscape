@@ -18,6 +18,8 @@ public class GameManager : MonoBehaviour
     [Header("Settings")] 
     [SerializeField] private float decreaseRate = 1f;
 
+    private bool isStageLoaded =false;
+
     private PlayerMovement PlayerMovement;
     private void Awake()
     {
@@ -55,11 +57,17 @@ public class GameManager : MonoBehaviour
     }
 
     public void LoseCheck(){
+        if(isStageLoaded){
+            return;
+        }
         if(playerStats.Toxicity >= playerStats.maxToxicity){
             SceneManager.LoadScene((int)StageType.DieDialogue);   
+            isStageLoaded = true;
+            
         }
         if(playerStats.Hunger <= playerStats.minHunger){
             SceneManager.LoadScene((int)StageType.DieDialogue);   
+            isStageLoaded = true;
         }
     }
     

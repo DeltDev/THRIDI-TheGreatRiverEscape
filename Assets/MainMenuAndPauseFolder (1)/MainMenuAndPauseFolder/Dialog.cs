@@ -19,43 +19,67 @@ public class Dialog : MonoBehaviour
     private int index;
     private void Start() {
         textComp.text = string.Empty;
+        
         StartDialogue();
     }
     private void Update() {
         if(Input.GetMouseButtonDown(0)){
             if(textComp.text == Lines[index]){
                 NextLine();
+                Debug.Log("fefe");
             } else {
                 StopAllCoroutines();
                 textComp.text = Lines[index];
+                Debug.Log("test");
             }
         }
     }
 
     void StartDialogue(){
         index = 0;
-        StartCoroutine(TypeLine());
         Images.color = Color.white;
         Images.sprite = Sprites[index];
+        StartCoroutine(TypeLine());
     }
 
     IEnumerator TypeLine(){
+        bool tryTest = true;
         foreach(char c in Lines[index].ToCharArray()){
+            
             textComp.text +=c;
-            FindObjectOfType<AudioManager>().PlaySound("DialogueSFX");
+
+            if(tryTest){
+                AudioManager audioManager = FindObjectOfType<AudioManager>();
+                if (audioManager != null)
+                {
+                    audioManager.PlaySound("DialogueSFX");
+                }
+                else
+                {
+                    Debug.LogWarning("AudioManager not found!");
+                    tryTest = false;
+                }
+            }
+            
             yield return new WaitForSeconds(textSpeed);
         }
     }
 
     void NextLine(){
-        if(index < Lines.Length-1){
+        if(index < Lines.Length-1){            
             index++;
+            Images.sprite = Sprites[index];
             textComp.text = string.Empty;
             StartCoroutine(TypeLine());
-            Images.sprite = Sprites[index];
+            
         } else {
+            if(NextStage == StageType.MainMenu){
+                Application.Quit();
+                return;
+            }
             Debug.Log((int)NextStage);
             SceneManager.LoadScene((int)NextStage);
+            
         }
     }
 }
