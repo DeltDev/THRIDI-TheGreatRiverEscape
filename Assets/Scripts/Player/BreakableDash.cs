@@ -18,8 +18,8 @@ public class BreakableDash : MonoBehaviour
 
     private void BreakOnDash()
     {
-        GameObject instantiated = Instantiate(breakPrefab, transform.position, Quaternion.identity);
-        instantiated.transform.localScale = transform.localScale;
+        GameObject instantiated = Instantiate(breakPrefab, transform.position, Quaternion.identity, transform.parent);
+        instantiated.transform.rotation = transform.rotation;
         Destroy(gameObject);
 
         foreach (Transform t in instantiated.transform)
@@ -27,10 +27,10 @@ public class BreakableDash : MonoBehaviour
             var rb = t.GetComponent<Rigidbody>();
             if (rb != null)
             {
-                rb.AddExplosionForce(10000, instantiated.transform.position, 10);
+                // rb.AddExplosionForce(1000, instantiated.transform.position, 10);
             }
-            StartCoroutine(Shrink(t, 3f));
-            Destroy(t.gameObject, 5);
+            StartCoroutine(Shrink(t, 2f));
+            Destroy(t.gameObject, 10);
         }
     }
     
