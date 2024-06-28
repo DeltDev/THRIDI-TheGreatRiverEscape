@@ -1009,6 +1009,7 @@ MonoBehaviour:
   isDashObtained: 0
   isImmuneBleachObtained: 0
   isNightVisionObtained: 0
+  DashLogo: {fileID: 1740733943}
 --- !u!4 &364359039
 Transform:
   m_ObjectHideFlags: 0
@@ -6357,7 +6358,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1740733944
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7898,6 +7899,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: End
+      objectReference: {fileID: 0}
+    - target: {fileID: 8093433083076785824, guid: 36349a6f638d6cb45a85e2f57ee6ea9a,
+        type: 3}
+      propertyPath: NextStage
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8388017692489079461, guid: 36349a6f638d6cb45a85e2f57ee6ea9a,
         type: 3}

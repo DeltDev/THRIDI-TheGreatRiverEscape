@@ -8,11 +8,11 @@ public class PlayerStats
     [Header("Toxicity")]
     [SerializeField]private float _toxicity;
     [SerializeField]private float minToxicity = 0;
-    [SerializeField]private float maxToxicity = 100;
+    [SerializeField]public float maxToxicity = 100;
     
     [Header("Hunger")]
     [SerializeField]private float _hunger;
-    [SerializeField]private float minHunger = 0;
+    [SerializeField]public float minHunger = 0;
     [SerializeField]private float maxHunger = 100;
     
     public float Toxicity

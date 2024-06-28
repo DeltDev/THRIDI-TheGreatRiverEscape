@@ -1,6 +1,6 @@
 using System;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 [Serializable]
 public class GameManager : MonoBehaviour
 {
@@ -12,6 +12,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Collider playerCollider;
     [SerializeField] private PlayerStats playerStats;
     [SerializeField] private PlayerUI playerUI;
+
+    
 
     [Header("Settings")] 
     [SerializeField] private float decreaseRate = 1f;
@@ -40,6 +42,7 @@ public class GameManager : MonoBehaviour
     private void Update()
     {
         DecreaseHunger(decreaseRate * Time.deltaTime);
+        LoseCheck();
     }
 
 
@@ -48,6 +51,16 @@ public class GameManager : MonoBehaviour
     {
         playerStats.IncreaseToxicity(value);
         playerUI.IncreaseToxicity(playerStats.Toxicity);
+        
+    }
+
+    public void LoseCheck(){
+        if(playerStats.Toxicity >= playerStats.maxToxicity){
+            SceneManager.LoadScene((int)StageType.DieDialogue);   
+        }
+        if(playerStats.Hunger <= playerStats.minHunger){
+            SceneManager.LoadScene((int)StageType.DieDialogue);   
+        }
     }
     
     public void IncreaseHunger(float value)
@@ -67,6 +80,7 @@ public class GameManager : MonoBehaviour
     {
         playerStats.DecreaseHunger(value);
         playerUI.DecreaseHunger(playerStats.Hunger);
+        
     }
     
     // ------------------- Player Power ups ------------------- //
@@ -75,10 +89,13 @@ public class GameManager : MonoBehaviour
     [SerializeField] private bool isDashObtained;
     [SerializeField] private bool isImmuneBleachObtained;
     [SerializeField] private bool isNightVisionObtained;
+
+    [SerializeField] private GameObject DashLogo;
     
     public void ObtainDash()
     {
         isDashObtained = true;
+        DashLogo.SetActive(true);
     }
     
     public bool IsDashObtained()

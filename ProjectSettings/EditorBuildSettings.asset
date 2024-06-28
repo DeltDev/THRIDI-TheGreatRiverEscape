@@ -26,4 +26,19 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/MainMenuAndPauseFolder (1)/DialoguScene/DialogBeforeStage2.unity
     guid: 6d48adb90bd237c42bee196a8b339b6e
+  - enabled: 1
+    path: Assets/MainMenuAndPauseFolder (1)/DialoguScene/DialogBeforeStage3.unity
+    guid: 932aa0ae1f03d394aba5f51d2f44f057
+  - enabled: 1
+    path: Assets/MainMenuAndPauseFolder (1)/DialoguScene/DialogBeforeStage4.unity
+    guid: 69de8c8592288ce4e98686c630f0b81f
+  - enabled: 1
+    path: Assets/MainMenuAndPauseFolder (1)/DialoguScene/DialogueWhenLose.unity
+    guid: 01fee2cef95ceb24d8b5a69de6e744af
+  - enabled: 1
+    path: Assets/MainMenuAndPauseFolder (1)/DialoguScene/DialogueWhenWin.unity
+    guid: 30c7c4dbe9894954e98bdcf1a5b31f38
+  - enabled: 1
+    path: Assets/MainMenuAndPauseFolder (1)/DialoguScene/PreviewDialogue.unity
+    guid: 402ae26d7981241429fbcab7158d8c6f
   m_configObjects: {}
