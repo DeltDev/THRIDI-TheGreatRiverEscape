@@ -1,13 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class MainMenuAnimation : MonoBehaviour
 {
     [SerializeField] private RectTransform LogoScale,PlayButtonScale,ExitButtonScale;
     [SerializeField] private RectTransform ThridiLogo,GemastikLogo;
-    void Start()
+    private void Start()
     {
+        Debug.Log("MainMenuAnimation Start");
         LogoScale.localScale = Vector3.zero;
         PlayButtonScale.localScale = Vector3.zero;
         ExitButtonScale.localScale = Vector3.zero;

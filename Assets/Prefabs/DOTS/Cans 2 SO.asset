@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Cans 2 SO
   m_EditorClassIdentifier: 
   hunger: 0
-  toxicity: 15
+  toxicity: 20

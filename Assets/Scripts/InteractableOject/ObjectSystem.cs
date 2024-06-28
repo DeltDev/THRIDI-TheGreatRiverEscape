@@ -110,11 +110,24 @@ namespace InteractableOject
         public GameManager gameManager;
         protected override void OnCreate()
         {
-            gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+            try {
+                gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+            } catch (System.Exception e) {
+                Debug.Log("GameManager not found");
+            }
         }
         
         protected override void OnUpdate()
         {
+            if (gameManager == null)
+            {
+                try {
+                    gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+                } catch (System.Exception e) {
+                    Debug.Log("GameManager not found");
+                }
+            }
+            
             var commandBuffer = new EntityCommandBuffer(Allocator.TempJob);
             Entities.WithoutBurst().WithAll<MarkedForDestruction, ObjectData>().ForEach(
                 (Entity entity, in ObjectData objectData) =>
