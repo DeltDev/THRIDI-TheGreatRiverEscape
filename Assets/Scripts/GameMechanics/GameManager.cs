@@ -31,6 +31,10 @@ public class GameManager : MonoBehaviour
         
         playerStats = new PlayerStats();
         PlayerMovement = player.GetComponent<PlayerMovement>();
+        
+        // Canvas
+        GameObject canvas = GameObject.FindWithTag("MainCanvas");
+        DontDestroyOnLoad(canvas);
     }
     
     private void Update()

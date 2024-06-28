@@ -83,6 +83,10 @@ namespace InteractableOject
         [BurstCompile]
         protected override void OnUpdate()
         {
+            if (player == null)
+            {
+                player = GameObject.FindWithTag("Player");
+            }
             var commandBuffer = new EntityCommandBuffer(Allocator.TempJob);
             float3 playerPosition = player.transform.position;
             Entities.WithAll<RadiusData>().ForEach(
@@ -194,7 +198,7 @@ namespace InteractableOject
             bool positionIsValid;
             int attempts = 0;
 
-            Terrain terrain = Terrain.activeTerrain;
+            Terrain terrain = GameObject.FindWithTag("MainTerrain").GetComponent<Terrain>();
             Bounds bounds = terrain.terrainData.bounds;
             do
             {
@@ -205,20 +209,20 @@ namespace InteractableOject
                 );
 
                 // Set y to the height of the terrain at the position
-                position.y = terrain.SampleHeight(position) + UnityEngine.Random.Range(0, 10);
+                position.y = terrain.SampleHeight(position) + 10f;
 
                 bool isInsideObject = Physics.CheckSphere(position, 5f);
                 Vector3 viewportPosition = Camera.main.WorldToViewportPoint(position);
-                bool isInCameraView = viewportPosition.x is >= 0 and <= 1 && viewportPosition.y is >= 0 and <= 1 && viewportPosition.z >= 0;
-                bool isOnLand = position.y > bounds.max.y;
-                positionIsValid = !isInsideObject && !isInCameraView && !isOnLand;
-
+                bool isInRendererView =viewportPosition.x >= 0 && viewportPosition.x <= 1 && viewportPosition.y >= 0 && viewportPosition.y <= 1 && viewportPosition.z > 0;
+                bool isOnLand = position.y > bounds.max.y - 5f ;
+                positionIsValid = !isInsideObject && !isInRendererView && !isOnLand;
                 attempts++;
             }
             while (!positionIsValid && attempts < 100);
 
             if (!positionIsValid)
             {
+                Debug.Log("Failed to find a valid position to spawn the object");
                 return;
             }
 
