@@ -50,7 +50,7 @@ public class PlayerMovement : MonoBehaviour
     
     private void Dash()
     {
-        if (IsDashing) return;
+        if (IsDashing || !GameManager.Instance.IsDashObtained()) return;
         rb.AddForce(dashForce * cameraTransform.forward);
         StartCoroutine(DashDuration());
     }
