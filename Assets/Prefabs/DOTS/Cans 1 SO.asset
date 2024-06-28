@@ -12,9 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 243946c017594e689d1597b2b3354828, type: 3}
   m_Name: Cans 1 SO
   m_EditorClassIdentifier: 
-  objectName: Good_1
-  objectType: 0
-  hunger: 20
-  toxicity: 0
-  isIncreasingHunger: 1
-  isInstaKill: 0
+  hunger: 0
+  toxicity: 20
