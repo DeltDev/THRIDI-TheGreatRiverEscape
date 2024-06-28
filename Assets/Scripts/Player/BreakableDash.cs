@@ -9,7 +9,7 @@ public class BreakableDash : MonoBehaviour
 
     public void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.CompareTag("Player") && !GameManager.Instance.IsDashObtained() && GameManager.Instance.IsDashing())
+        if (other.gameObject.CompareTag("Player") && GameManager.Instance.IsDashObtained() && GameManager.Instance.IsDashing())
         {
             Debug.Log("Break on dash");
             BreakOnDash();
