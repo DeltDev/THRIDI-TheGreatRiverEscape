@@ -172,7 +172,7 @@ MonoBehaviour:
   sampah2: {fileID: 1334521016570951557, guid: fee7544a73d907342a00e78429e9a082, type: 3}
   sampah3: {fileID: 1334521016570951557, guid: 0dd3eaf8b75551440be866c8699bff58, type: 3}
   spawnRate: 5
-  maxSpawn: 200
+  maxSpawn: 100
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

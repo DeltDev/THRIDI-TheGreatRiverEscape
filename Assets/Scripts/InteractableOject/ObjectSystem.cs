@@ -193,39 +193,50 @@ namespace InteractableOject
             Vector3 position;
             bool positionIsValid;
             int attempts = 0;
-            
-            Bounds bounds = GameObject.Find("GameManager").GetComponent<GameManager>().boundingBox.GetComponent<Terrain>().terrainData.bounds;
+
+            Terrain terrain = Terrain.activeTerrain;
+            Bounds bounds = terrain.terrainData.bounds;
             do
             {
                 position = new Vector3(
                     UnityEngine.Random.Range(bounds.min.x, bounds.max.x),
-                    UnityEngine.Random.Range(bounds.min.y, bounds.max.y),
+                    0,
                     UnityEngine.Random.Range(bounds.min.z, bounds.max.z)
                 );
-        
+
+                // Set y to the height of the terrain at the position
+                position.y = terrain.SampleHeight(position) + UnityEngine.Random.Range(0, 10);
+
                 bool isInsideObject = Physics.CheckSphere(position, 5f);
                 Vector3 viewportPosition = Camera.main.WorldToViewportPoint(position);
                 bool isInCameraView = viewportPosition.x is >= 0 and <= 1 && viewportPosition.y is >= 0 and <= 1 && viewportPosition.z >= 0;
-                positionIsValid = !isInsideObject && !isInCameraView;
-        
+                bool isOnLand = position.y > bounds.max.y;
+                positionIsValid = !isInsideObject && !isInCameraView && !isOnLand;
+
                 attempts++;
             }
-            while (!positionIsValid && attempts < 10);
-        
+            while (!positionIsValid && attempts < 100);
+
             if (!positionIsValid)
             {
                 return;
             }
-        
+
             Entity spawnedEntity = EntityManager.Instantiate(entity);
-        
+
+            // Get the normal of the terrain at the position
+            Vector3 normal = terrain.terrainData.GetInterpolatedNormal(position.x / terrain.terrainData.size.x, position.z / terrain.terrainData.size.z);
+
+            // Calculate the rotation to align the object with the terrain
+            Quaternion rotation = Quaternion.FromToRotation(Vector3.up, normal);
+
             SystemAPI.SetComponent(spawnedEntity, new LocalTransform
             {
                 Position = position,
-                Rotation = UnityEngine.Random.rotation,
+                Rotation = rotation, // Use the calculated rotation
                 Scale = 3f
             });
-        
+
             SystemAPI.SetComponent(spawnedEntity, new FloatingData
             {
                 Amplitude = CONST.AMPLITUDE,
@@ -242,7 +253,6 @@ namespace InteractableOject
             {
                 commandBehavior.AddComponent(spawnedEntity, new BadObject());
             }
-            
         }
     }
 }
