@@ -83,6 +83,10 @@ namespace InteractableOject
         [BurstCompile]
         protected override void OnUpdate()
         {
+            if (player == null)
+            {
+                player = GameObject.FindWithTag("Player");
+            }
             var commandBuffer = new EntityCommandBuffer(Allocator.TempJob);
             float3 playerPosition = player.transform.position;
             Entities.WithAll<RadiusData>().ForEach(

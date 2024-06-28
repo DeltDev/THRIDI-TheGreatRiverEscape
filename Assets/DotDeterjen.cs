@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class DotDeterjen : MonoBehaviour
 {
-    private Bounds bounds;
+    public Bounds bounds;
     void Start()
     {
-        bounds = GetComponent<Renderer>().bounds;
+        bounds = GetComponent<BoxCollider>().bounds;
     }
 
     // Update is called once per frame
@@ -18,7 +18,6 @@ public class DotDeterjen : MonoBehaviour
         if (bounds.Contains(GameObject.FindWithTag("Player").transform.position))
         {
             GameManager.Instance.IncreaseToxicity(10f * Time.deltaTime);
-            Destroy(gameObject);
         }
     }
 }
