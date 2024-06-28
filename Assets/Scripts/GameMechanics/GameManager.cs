@@ -15,9 +15,8 @@ public class GameManager : MonoBehaviour
 
     [Header("Settings")] 
     [SerializeField] private float decreaseRate = 1f;
-    public GameObject boundingBox; 
 
-    
+    private PlayerMovement PlayerMovement;
     private void Awake()
     {
         if (Instance == null)
@@ -31,14 +30,15 @@ public class GameManager : MonoBehaviour
         }
         
         playerStats = new PlayerStats();
+        PlayerMovement = player.GetComponent<PlayerMovement>();
     }
     
     private void Update()
     {
         DecreaseHunger(decreaseRate * Time.deltaTime);
     }
-    
-    
+
+
     // ------------------- Player Stats ------------------- //
     public void IncreaseToxicity(float value)
     {
@@ -101,5 +101,9 @@ public class GameManager : MonoBehaviour
     {
         return isNightVisionObtained;
     }
-    
+
+    public bool IsDashing()
+    {
+        return PlayerMovement.IsDashing;
+    }
 }
