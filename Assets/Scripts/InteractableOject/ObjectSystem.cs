@@ -1,4 +1,5 @@
-﻿using Unity.Collections;
+﻿using System.Data;
+using Unity.Collections;
 
 namespace InteractableOject
 {
@@ -88,7 +89,6 @@ namespace InteractableOject
                 (Entity entity, in RadiusData radiusData, in LocalToWorld localToWorld) =>
                 {
                     float3 position = localToWorld.Position;
-                    float Distance = math.distance(playerPosition, position);
                     if (math.distance(playerPosition, position) < radiusData.Radius)
                     {
                         commandBuffer.AddComponent<MarkedForDestruction>(entity);
@@ -109,7 +109,6 @@ namespace InteractableOject
             gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         }
         
-        [BurstCompile]
         protected override void OnUpdate()
         {
             var commandBuffer = new EntityCommandBuffer(Allocator.TempJob);
@@ -127,51 +126,133 @@ namespace InteractableOject
     }
     
     public struct MarkedForDestruction : IComponentData { }
+    public struct GoodObject : IComponentData { }
+    public struct BadObject : IComponentData { }
 
 
     [BurstCompile]
     public partial class ObjectSpawnerSystem : SystemBase
     {
-        
-        public Camera camera;
+        private EntityCommandBuffer commandBehavior;
+
         protected override void OnCreate()
         {
             RequireForUpdate<ObjectSpawnerData>();
-            camera = Camera.main;
         }
 
-        [BurstCompile]
         protected override void OnUpdate()
         {
-            if (!Input.GetKeyDown(KeyCode.Space))
+            commandBehavior = new EntityCommandBuffer(Allocator.Temp);
+            Entities.WithoutBurst().ForEach((ref ObjectSpawnerData spawnerData) =>
+            {
+                spawnerData.Timer += SystemAPI.Time.DeltaTime;
+                if (spawnerData.Timer >= spawnerData.SpawnRate)
+                {
+                    spawnerData.Timer = 0;
+                    BatchRandomSpawn();
+                }
+            }).Run();
+            commandBehavior.Playback(EntityManager);
+        }
+        
+        private void BatchRandomSpawn()
+        {
+            var spawnerData = SystemAPI.GetSingleton<ObjectSpawnerData>();
+            
+            int goodObjectCount = 0;
+            Entities.WithAll<GoodObject>().ForEach((Entity e) => { goodObjectCount++; }).Run();
+            
+            int badObjectCount = 0;
+            Entities.WithAll<BadObject>().ForEach((Entity e) => { badObjectCount++; }).Run();
+            
+            for (int i = 0; i <= spawnerData.MaxSpawn-goodObjectCount; i++)
+            {
+                SpawnObject(spawnerData.pelet, true);
+            }
+        
+            for (int i = 0; i <= spawnerData.MaxSpawn-badObjectCount; i++)
+            {
+                int random = UnityEngine.Random.Range(0, 3);
+                switch (random)
+                {
+                    case 0:
+                        SpawnObject(spawnerData.sampah1, false);
+                        break;
+                    case 1:
+                        SpawnObject(spawnerData.sampah2, false);
+                        break;
+                    case 2:
+                        SpawnObject(spawnerData.sampah3, false);
+                        break;
+                }
+            }
+        }
+        //
+        private void SpawnObject(Entity entity, bool isGood)
+        {
+            Vector3 position;
+            bool positionIsValid;
+            int attempts = 0;
+
+            Terrain terrain = Terrain.activeTerrain;
+            Bounds bounds = terrain.terrainData.bounds;
+            do
+            {
+                position = new Vector3(
+                    UnityEngine.Random.Range(bounds.min.x, bounds.max.x),
+                    0,
+                    UnityEngine.Random.Range(bounds.min.z, bounds.max.z)
+                );
+
+                // Set y to the height of the terrain at the position
+                position.y = terrain.SampleHeight(position) + UnityEngine.Random.Range(0, 10);
+
+                bool isInsideObject = Physics.CheckSphere(position, 5f);
+                Vector3 viewportPosition = Camera.main.WorldToViewportPoint(position);
+                bool isInCameraView = viewportPosition.x is >= 0 and <= 1 && viewportPosition.y is >= 0 and <= 1 && viewportPosition.z >= 0;
+                bool isOnLand = position.y > bounds.max.y;
+                positionIsValid = !isInsideObject && !isInCameraView && !isOnLand;
+
+                attempts++;
+            }
+            while (!positionIsValid && attempts < 100);
+
+            if (!positionIsValid)
             {
                 return;
             }
 
-            ObjectSpawnerData spawnerData = SystemAPI.GetSingleton<ObjectSpawnerData>();
-            Entity spawnedEntity = EntityManager.Instantiate(spawnerData.prefab);
+            Entity spawnedEntity = EntityManager.Instantiate(entity);
 
-            Vector3 cameraDirection = camera.transform.forward;
-            float anglex = UnityEngine.Random.Range(-15f, 15f);
-            float angley = UnityEngine.Random.Range(-15f, 15f);
-            Vector3 newDirection = Quaternion.Euler(anglex, angley, 0) * cameraDirection;
-            Vector3 position = camera.transform.position + newDirection * UnityEngine.Random.Range(20f, 40f);
+            // Get the normal of the terrain at the position
+            Vector3 normal = terrain.terrainData.GetInterpolatedNormal(position.x / terrain.terrainData.size.x, position.z / terrain.terrainData.size.z);
+
+            // Calculate the rotation to align the object with the terrain
+            Quaternion rotation = Quaternion.FromToRotation(Vector3.up, normal);
 
             SystemAPI.SetComponent(spawnedEntity, new LocalTransform
             {
                 Position = position,
-                Rotation = UnityEngine.Random.rotation,
+                Rotation = rotation, // Use the calculated rotation
                 Scale = 3f
             });
-            
+
             SystemAPI.SetComponent(spawnedEntity, new FloatingData
             {
                 Amplitude = CONST.AMPLITUDE,
                 Frequency = CONST.FREQUENCY,
                 InitialY = position.y
             });
-            
-            
+
+            // If the object is good, add the GoodObject component
+            if (isGood)
+            {
+                commandBehavior.AddComponent(spawnedEntity, new GoodObject());
+            }
+            else
+            {
+                commandBehavior.AddComponent(spawnedEntity, new BadObject());
+            }
         }
     }
 }
