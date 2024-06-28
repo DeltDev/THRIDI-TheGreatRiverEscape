@@ -3,15 +3,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DashPowerUp : MonoBehaviour
+public class ObtainAntiDeterjen : MonoBehaviour
 {
     private void OnCollisionEnter(Collision other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            Debug.Log("Dash Power Up");
-            GameManager.Instance.ObtainDash();
-            Destroy(transform.parent.gameObject);
+            GameManager.Instance.ObtainImmuneBleach();
+            GameObject parent = transform.parent.gameObject;
+            Destroy(parent);
         }
     }
 }

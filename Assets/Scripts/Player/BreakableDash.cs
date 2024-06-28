@@ -27,7 +27,7 @@ public class BreakableDash : MonoBehaviour
             var rb = t.GetComponent<Rigidbody>();
             if (rb != null)
             {
-                // rb.AddExplosionForce(1000, instantiated.transform.position, 10);
+                rb.AddExplosionForce(1000, instantiated.transform.position, 10);
             }
             StartCoroutine(Shrink(t, 2f));
             Destroy(t.gameObject, 10);

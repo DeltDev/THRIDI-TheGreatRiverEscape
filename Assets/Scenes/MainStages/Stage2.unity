@@ -39,7 +39,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -228,6 +228,7 @@ GameObject:
   - component: {fileID: 44721550}
   - component: {fileID: 44721549}
   - component: {fileID: 44721548}
+  - component: {fileID: 44721551}
   m_Layer: 0
   m_Name: Deterjen
   m_TagString: Untagged
@@ -5047,6 +5048,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: -182.37, y: 89.726, z: -84.99899}
+--- !u!114 &44721551
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 44721547}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b93bd2834ca22b5488ec3d373a178112, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &88415250
 GameObject:
   m_ObjectHideFlags: 0
@@ -7749,6 +7762,7 @@ GameObject:
   - component: {fileID: 1308450819}
   - component: {fileID: 1308450818}
   - component: {fileID: 1308450817}
+  - component: {fileID: 1308450820}
   m_Layer: 0
   m_Name: Deterjen (1)
   m_TagString: Untagged
@@ -12568,6 +12582,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: -182.37, y: 536.599, z: -84.99899}
+--- !u!114 &1308450820
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1308450816}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b93bd2834ca22b5488ec3d373a178112, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1345879684
 GameObject:
   m_ObjectHideFlags: 0
@@ -13738,6 +13764,7 @@ GameObject:
   - component: {fileID: 1883423747}
   - component: {fileID: 1883423746}
   - component: {fileID: 1883423749}
+  - component: {fileID: 1883423750}
   m_Layer: 0
   m_Name: Deterjen 3
   m_TagString: Untagged
@@ -18578,6 +18605,18 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 17.100018, y: 17.100002, z: 20.270618}
   m_Center: {x: -0.000025781197, y: -0.0000051223005, z: 1.5852866}
+--- !u!114 &1883423750
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1883423745}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b93bd2834ca22b5488ec3d373a178112, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1883636277
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19334,6 +19373,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 7735143157532598946}
+    - targetCorrespondingSourceObject: {fileID: 2077889825547059678, guid: 2a1e3314db6cb9549a9099f69489f901,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7735143157532598947}
   m_SourcePrefab: {fileID: 100100000, guid: 2a1e3314db6cb9549a9099f69489f901, type: 3}
 --- !u!1 &7735143157532598945 stripped
 GameObject:
@@ -19362,6 +19405,18 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 12.100009, y: 10.6, z: 23.9}
   m_Center: {x: 29.1, y: -0.5, z: 5.16}
+--- !u!114 &7735143157532598947
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7735143157532598945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b93bd2834ca22b5488ec3d373a178112, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

@@ -126,6 +126,7 @@ MonoBehaviour:
   inputManager: {fileID: 0}
   rotationSmoothTime: 0.1
   cameraTransform: {fileID: 0}
+  dashForce: 4000
 --- !u!54 &4552645404700986435
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -1738,6 +1738,24 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &563372270 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6533523012701036001, guid: 5c686d210d67dcc4cb37cc6cfe039f97,
+    type: 3}
+  m_PrefabInstance: {fileID: 1730590978}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &563372276
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 563372270}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2331967a0ed04b04bb73b6281c05b8f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &577320883
 GameObject:
   m_ObjectHideFlags: 0
@@ -4181,8 +4199,8 @@ GameObject:
   - component: {fileID: 1075592919}
   - component: {fileID: 1075592918}
   m_Layer: 5
-  m_Name: Canvas (1)
-  m_TagString: Untagged
+  m_Name: Canvas
+  m_TagString: MainCanvas
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6108,7 +6126,11 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6533523012701036001, guid: 5c686d210d67dcc4cb37cc6cfe039f97,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 563372276}
   m_SourcePrefab: {fileID: 100100000, guid: 5c686d210d67dcc4cb37cc6cfe039f97, type: 3}
 --- !u!1001 &1751080010
 PrefabInstance:
