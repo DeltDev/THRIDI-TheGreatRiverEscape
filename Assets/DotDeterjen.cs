@@ -17,7 +17,7 @@ public class DotDeterjen : MonoBehaviour
         
         if (bounds.Contains(GameObject.FindWithTag("Player").transform.position))
         {
-            GameManager.Instance.IncreaseToxicity(10f * Time.deltaTime);
+            GameManager.Instance.IncreaseToxicity(30f * Time.deltaTime);
         }
     }
 }
