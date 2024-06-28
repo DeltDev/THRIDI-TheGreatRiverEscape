@@ -940,16 +940,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textComp: {fileID: 1028406595}
+  Images: {fileID: 453104562}
+  Sprites:
+  - {fileID: 21300000, guid: c48d985ec03c5be4fac32052cb8eaf3a, type: 3}
+  - {fileID: 21300000, guid: 602f299a237f8374f8e79ec32d3a0661, type: 3}
+  - {fileID: 21300000, guid: 03047ab12af3ca141aff56d4160113b9, type: 3}
+  - {fileID: 21300000, guid: 89a1110e77b61a54ba8dfc93709e7c75, type: 3}
   Lines:
-  - testestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestes
-  - testestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestes
-  - testestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestes
-  - testestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestes
-  - testestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestes
-  - testestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestes
-  - testestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestes
-  - testestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestes
+  - Selamat datang di Sungai Forest, Sungai indah ini berada pada pertengahan hutan
+  - Berikut Contoh object yang breakable, objek ini dapat dihancurkan setelah mendapat
+    power up dash
+  - Power up dash memiliki tampilan sebagai berikut, selamat mencari
+  - Ini objective yang harus kamu capai, Semangat !!
   textSpeed: 0.03
+  NextStage: 1
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

@@ -3,10 +3,10 @@ using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
 using System.Threading;
-
+public enum StageType {MainMenu = 0, FirstStage = 1, SecondStage = 2, ThirdStage = 3, FinalStage = 4, FirstDialogue = 5, SecondDialogue = 6, ThirdDialogue = 7, FinalDialogue = 8, DieDialogue = 9, WinDialogue = 10, PreviewDialogue = 11}
 public class EndOfStageController : MonoBehaviour
 {
-    private enum StageType {FirstStage, SecondStage, ThirdStage, FinalStage}
+    
     [SerializeField] private StageType NextStage;
     //[SerializeField] private float TransitionDuration = 2f;
 

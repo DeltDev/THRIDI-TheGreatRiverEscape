@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/MainMenuAndPauseFolder (1)/MainMenuAndPauseFolder/MainMenu.unity
+    guid: bcd0e54defa71444aba55ad79ccb1570
+  - enabled: 1
     path: Assets/Scenes/MainStages/Stage1.unity
     guid: c015b470a2274bf4a851e4ea3774d33d
   - enabled: 1
@@ -17,4 +20,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MainStages/Stage4.unity
     guid: 326e31c2a4d5d8346a0e7e2dc5e8037e
+  - enabled: 1
+    path: Assets/MainMenuAndPauseFolder (1)/DialoguScene/DialogBeforeStage1.unity
+    guid: ddf54727521433d4ebc72145457faaa6
+  - enabled: 1
+    path: Assets/MainMenuAndPauseFolder (1)/DialoguScene/DialogBeforeStage2.unity
+    guid: 6d48adb90bd237c42bee196a8b339b6e
   m_configObjects: {}

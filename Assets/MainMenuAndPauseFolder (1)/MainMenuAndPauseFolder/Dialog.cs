@@ -4,11 +4,18 @@ using UnityEngine;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 public class Dialog : MonoBehaviour
 {
+    
     [SerializeField] private TextMeshProUGUI textComp;
-    [SerializeField] private string[] Lines;
+
+    [SerializeField] private Image Images;
+    [SerializeField] private Sprite[] Sprites;
+    [SerializeField] public string[] Lines;
     [SerializeField] private float textSpeed;
+
+    [SerializeField] private StageType NextStage;
     private int index;
     private void Start() {
         textComp.text = string.Empty;
@@ -28,6 +35,8 @@ public class Dialog : MonoBehaviour
     void StartDialogue(){
         index = 0;
         StartCoroutine(TypeLine());
+        Images.color = Color.white;
+        Images.sprite = Sprites[index];
     }
 
     IEnumerator TypeLine(){
@@ -43,8 +52,10 @@ public class Dialog : MonoBehaviour
             index++;
             textComp.text = string.Empty;
             StartCoroutine(TypeLine());
+            Images.sprite = Sprites[index];
         } else {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            Debug.Log((int)NextStage);
+            SceneManager.LoadScene((int)NextStage);
         }
     }
 }
